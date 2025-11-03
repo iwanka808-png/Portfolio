@@ -4,10 +4,12 @@ const taskList = document.getElementById("taskList");
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-
 renderTasks();
 
 addBtn.addEventListener("click", addTask);
+taskInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") addTask();
+});
 
 function addTask() {
   const text = taskInput.value.trim();
@@ -42,12 +44,15 @@ function renderTasks() {
     if (task.done) li.classList.add("done");
 
     const btns = document.createElement("div");
+
     const doneBtn = document.createElement("button");
     doneBtn.textContent = "✔";
+    doneBtn.title = "Als erledigt markieren";
     doneBtn.onclick = () => toggleTask(i);
 
     const delBtn = document.createElement("button");
     delBtn.textContent = "🗑";
+    delBtn.title = "Löschen";
     delBtn.onclick = () => deleteTask(i);
 
     btns.appendChild(doneBtn);
@@ -56,3 +61,4 @@ function renderTasks() {
     taskList.appendChild(li);
   });
 }
+

@@ -1,0 +1,284 @@
+:root {
+  --bg: #eaf1f6;
+  --text: #1b1c1f;
+  --muted: #4b5563;
+  --paper: #ffffff;
+  --ring: rgba(17, 24, 39, .12);
+  --accent: #2b6cb0;
+  --radius: 14px;
+  --maxw: 1120px;
+  --gap: 22px;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  color: var(--text);
+  font: 500 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Inter", sans-serif;
+  background: var(--bg);
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color .15s ease, transform .15s ease;
+}
+a:hover { text-decoration: underline; }
+
+header, main, footer, section {
+  width: min(100% - 32px, var(--maxw));
+  margin: 0 auto;
+}
+
+
+h1, h2, h3 { line-height: 1.2; margin: 0 0 .6em; }
+h1 { font-weight: 800; font-size: clamp(28px, 3.5vw, 48px); }
+h2 { font-weight: 700; font-size: clamp(22px, 2.2vw, 30px); color: #0f172a; }
+h3 { font-weight: 700; font-size: 18px; }
+
+
+.site-header {
+  position: relative;
+  padding: clamp(80px, 12vw, 160px) 16px clamp(60px, 8vw, 100px);
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.55) 100%),
+    url("https://cdn.pixabay.com/photo/2024/12/13/20/34/mountains-9266137_640.jpg")
+    center/cover no-repeat;
+  z-index: -1;
+  filter: brightness(1.05) contrast(1.05) saturate(1.05);
+}
+
+.site-header h1 {
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+.site-header p {
+  margin: 12px auto 0;
+  max-width: 60ch;
+  color: #e8ecf5;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.top-nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+.top-nav .cta {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+.top-nav .cta:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+#regionen {
+  margin: 40px auto 60px;
+  padding: 40px 30px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.85), rgba(248,249,251,0.8));
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  transition: box-shadow .3s ease, transform .3s ease;
+}
+
+#regionen:hover {
+  box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+#regionen h2 {
+  color: #374151; 
+  font-weight: 700;
+  margin-bottom: 24px;
+  letter-spacing: 0.3px;
+}
+
+.regionen-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.regionen-list a {
+  display: block;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #f9fafb;
+  border: 1px solid rgba(0,0,0,0.08);
+  color: #444c56;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 0.2px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  transition: all .25s ease;
+}
+
+.regionen-list a:hover {
+  background: #f1f2f4;
+  color: #22272e;
+  border-color: rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 720px) {
+  #regionen { padding: 30px 20px; }
+  .regionen-list { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .regionen-list a { padding: 12px 10px; font-size: 15px; }
+}
+
+
+section { padding: clamp(22px, 4vw, 40px) 0; }
+
+.orte-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--gap);
+  margin-top: 16px;
+}
+
+.ort {
+  background: var(--paper);
+  border: 1px solid var(--ring);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,.06);
+  transition: transform .15s ease, box-shadow .15s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.ort:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0,0,0,.10);
+}
+
+.ort img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+.ort h3 { padding: 14px 16px 0; color: #111; }
+.ort p  { padding: 6px 16px 14px; margin: 0; color: var(--muted); font-weight: 450; }
+.meta { padding: 0 16px 16px; margin-top: auto; }
+
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 999px;
+  border: 1px solid var(--ring);
+  background: #ffffff;
+  color: var(--accent);
+  transition: background .15s ease, transform .15s ease;
+}
+.badge.ticket::before { content: "🎟️"; font-size: 16px; }
+.badge:hover {
+  background: #f3f8ff;
+  transform: translateY(-2px);
+}
+.site-footer {
+  margin: 60px auto 0;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.85), rgba(240,245,250,0.8));
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  color: #374151;
+  font-size: 15px;
+  line-height: 1.6;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.site-footer:hover {
+  box-shadow: 0 8px 26px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+}
+.footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.footer-title {
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.3px;
+  color: #2b6cb0;
+}
+.footer-contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.4rem;
+  margin-bottom: 1rem;
+}
+.footer-contact a {
+  color: #374151;
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+.footer-contact a:hover {
+  color: #2b6cb0;
+  transform: translateY(-2px);
+}
+.footer-contact i {
+  width: 18px;
+  height: 18px;
+  color: #2b6cb0;
+  stroke-width: 1.6;
+}
+.site-footer .note {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+
+
+
